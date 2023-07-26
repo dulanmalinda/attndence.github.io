@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<html>
+<head>
+    <title>Attendance and Tasks</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9; /* Add background color to the whole page */
+        }
+
+        h1 {
+            background-color: #007BFF; /* Add background color to the header */
+            color: #fff; /* Set text color for the header */
+            padding: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px; /* Add some spacing between the header and the table */
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #e0e0e0;
+        }
+
+        /* Attendance status styles */
+        td:nth-child(3) {
+            font-weight: bold;
+        }
+
+        td:nth-child(3):contains("Present") {
+            color: #008000; /* Green for Present */
+        }
+
+        td:nth-child(3):contains("Absent") {
+            color: #FF0000; /* Red for Absent */
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            table {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Attendance and Tasks - Pubudu</h1>
+    <table>
+        <tr>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Attendance</th>
+            <th>Task Description</th>
+        </tr>
+        <tr>
+            <td>27-Jul</td>
+            <td>Thursday</td>
+            <td>Present</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>26-Jul</td>
+            <td>Wednesday</td>
+            <td>Present</td>
+            <td>Research about native packet capturing (packet lookup)</td>
+        </tr>
+        <tr>
+            <td>25-Jul</td>
+            <td>Tuesday</td>
+            <td>Present</td>
+            <td>Implement an interface using C GTK library to retrieve the data from MongoDB</td>
+        </tr>
+        <tr>
+            <td>24-Jul</td>
+            <td>Monday</td>
+            <td>Present</td>
+            <td>Implement MongoDB and store the locally captured packet data to the database. Created a presentation about Comparison of Data Packages</td>
+        </tr>
+        <tr>
+            <td>21-Jul</td>
+            <td>Friday</td>
+            <td>Absent</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>20-Jul</td>
+            <td>Thursday</td>
+            <td>Present</td>
+            <td>Research about NoSQL and performance of data store and retrieve and research about MongoDB</td>
+        </tr>
+        <tr>
+            <td>19-Jul</td>
+            <td>Wednesday</td>
+            <td>Present</td>
+            <td>Read the source code (Wireshark)</td>
+        </tr>
+        <tr>
+            <td>18-Jul</td>
+            <td>Tuesday</td>
+            <td>Present</td>
+            <td>Research about Wireshark</td>
+        </tr>
+        <tr>
+            <td>17-Jul</td>
+            <td>Monday</td>
+            <td>Present</td>
+            <td>Configure dual boot Windows and Kali Linux</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+
