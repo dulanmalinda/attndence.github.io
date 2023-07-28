@@ -1,138 +1,176 @@
 <!DOCTYPE html>
 <html>
-<html>
 <head>
     <title>Attendance and Tasks</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: "Arial", sans-serif;
             padding: 20px;
-            background-color: #f9f9f9; /* Add background color to the whole page */
+            background-color: #f9f9f9;
+            color: #333;
         }
 
         h1 {
-            background-color: #007BFF; /* Add background color to the header */
-            color: #fff; /* Set text color for the header */
+            background-color: #007BFF;
+            color: #fff;
             padding: 10px;
+            text-align: center;
+            margin-bottom: 30px;
         }
 
-        table {
-            border-collapse: collapse;
-            width: 100%;
-            margin-top: 20px; /* Add some spacing between the header and the table */
+        .week {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
         }
 
-        th, td {
+        .date-box {
+            flex: 1;
             border: 1px solid #ddd;
-            padding: 8px;
-            text-align: left;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
         }
 
-        th {
-            background-color: #f2f2f2;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
+        .date-box:hover {
             background-color: #e0e0e0;
         }
 
-        /* Attendance status styles */
-        td:nth-child(3) {
-            font-weight: bold;
+        .date-box.present {
+            background-color: #b6e6b6; /* Green for Present */
         }
 
-        td:nth-child(3):contains("Present") {
-            color: #008000; /* Green for Present */
+        .date-box.absent {
+            background-color: #f5bcbc; /* Red for Absent */
         }
 
-        td:nth-child(3):contains("Absent") {
-            color: #FF0000; /* Red for Absent */
+        .task-details {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
         }
 
         /* Responsive Styles */
         @media (max-width: 768px) {
-            table {
-                font-size: 14px;
+            .week {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
     <h1>Attendance and Tasks - Pubudu</h1>
-    <table>
-        <tr>
-            <th>Date</th>
-            <th>Day</th>
-            <th>Attendance</th>
-            <th>Task Description</th>
+    
+    <div class="task-details" id="taskDetails">
+        <!-- JavaScript will update this section with task details -->
+    </div>
+    <tr>
+            <td colspan="4"><b>Week 2 (July)</b></td>
         </tr>
-        <tr>
-            <td>28-Jul</td>
-            <td>Friday</td>
-            <td>Present</td>
-            <td></td>
+    <div class="week">
+        <!-- Replace "Week 1" with the appropriate week name -->
+        <div class="date-box present" onclick="showTaskDetails('Jul 28')">28</div>
+        <div class="date-box absent" onclick="showTaskDetails('Jul 27')">27</div>
+        <div class="date-box present" onclick="showTaskDetails('Jul 26')">26</div>
+        <div class="date-box present" onclick="showTaskDetails('Jul 25')">25</div>
+        <div class="date-box present" onclick="showTaskDetails('Jul 24')">24</div>
+    </div>
+    <tr>
+            <td colspan="4"><b>Week 1 (July)</b></td>
         </tr>
-        <tr>
-            <td>27-Jul</td>
-            <td>Thursday</td>
-            <td>Absent</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>26-Jul</td>
-            <td>Wednesday</td>
-            <td>Present</td>
-            <td>Research about native packet capturing (packet lookup)</td>
-        </tr>
-        <tr>
-            <td>25-Jul</td>
-            <td>Tuesday</td>
-            <td>Present</td>
-            <td>Implement an interface using C GTK library to retrieve the data from MongoDB</td>
-        </tr>
-        <tr>
-            <td>24-Jul</td>
-            <td>Monday</td>
-            <td>Present</td>
-            <td>Implement MongoDB and store the locally captured packet data to the database. Created a presentation about Comparison of Data Packages</td>
-        </tr>
-        <tr>
-            <td>21-Jul</td>
-            <td>Friday</td>
-            <td>Absent</td>
-            <td></td>
-        </tr>
-        <tr>
-            <td>20-Jul</td>
-            <td>Thursday</td>
-            <td>Present</td>
-            <td>Research about NoSQL and performance of data store and retrieve and research about MongoDB</td>
-        </tr>
-        <tr>
-            <td>19-Jul</td>
-            <td>Wednesday</td>
-            <td>Present</td>
-            <td>Read the source code (Wireshark)</td>
-        </tr>
-        <tr>
-            <td>18-Jul</td>
-            <td>Tuesday</td>
-            <td>Present</td>
-            <td>Research about Wireshark</td>
-        </tr>
-        <tr>
-            <td>17-Jul</td>
-            <td>Monday</td>
-            <td>Present</td>
-            <td>Configure dual boot Windows and Kali Linux</td>
-        </tr>
-    </table>
+    <div class="week">
+        <!-- Replace "Week 1" with the appropriate week name -->
+        <div class="date-box absent" onclick="showTaskDetails('Jul 21')">21</div>
+        <div class="date-box present" onclick="showTaskDetails('Jul 20')">20</div>
+        <div class="date-box present" onclick="showTaskDetails('Jul 19')">19</div>
+        <div class="date-box present" onclick="showTaskDetails('Jul 18')">18</div>
+        <div class="date-box present" onclick="showTaskDetails('Jul 17')">17</div>
+    </div>
+ 
+    <script>
+        function showTaskDetails(date) {
+            // Define your data here or retrieve from a data source
+            const taskData = {
+                "Jul 17": [
+                    "Configure dual boot Windows and Kali Linux."
+                ],
+                "Jul 18": [
+                    "Research about Wireshark.",
+                ],
+                "Jul 19": [
+                    "Read the source code (Wireshark)."
+                ],
+                "Jul 20": [
+                    "Research about NoSQL and performance of data store and retrieve and research about MongoDB"
+                ],
+                "Jul 24": [
+                    "Implement MongoDB and store the locally captured packet data to the database.",
+                    "Created a presentation about Comparison of Data Packages"
+                ],
+                "Jul 25": [
+                    "Implement an interface using C GTK library to retrieve the data from MongoDB"
+                ],
+                "Jul 26": [
+                    "Research about native packet capturing (packet lookup)."
+                ],
+                "Jul 27": [
+                    ""
+                ],
+                "Jul 28": [
+                    ""
+                ],
+                
+            };
+
+            // Get the task details container element
+            const taskDetailsContainer = document.getElementById("taskDetails");
+
+            // Get the tasks for the selected date from the taskData object
+            const tasks = taskData[date];
+
+            if (tasks) {
+                // Create a list to display the tasks
+                const taskList = document.createElement("ul");
+
+                // Add each task as a list item to the list
+                tasks.forEach(task => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = task;
+                    taskList.appendChild(listItem);
+                });
+
+                // Update the task details container with the new list
+                taskDetailsContainer.innerHTML = `
+                    <h2>Task Details for ${date}</h2>
+                    <p></p>
+                `;
+                taskDetailsContainer.appendChild(taskList);
+            } else {
+                // If no tasks are available, display a message
+                taskDetailsContainer.innerHTML = `<p>No tasks recorded for ${date}.</p>`;
+            }
+        }
+        function showLatestTaskDetails() {
+            // Get the current date in the format "MMM DD" (e.g., "Jul 27")
+            const currentDate = new Date().toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric"
+            });
+
+            // If the current date exists in the taskData, show its task details
+            if (taskData[currentDate]) {
+                showTaskDetails(currentDate);
+            } else {
+                // If no tasks are available for the current date, display a message
+                const taskDetailsContainer = document.getElementById("taskDetails");
+                taskDetailsContainer.innerHTML = `<p>No tasks recorded for ${currentDate}.</p>`;
+            }
+        }
+
+        // Automatically show the latest data when the page is loaded
+        window.onload = showLatestTaskDetails;
+    </script>
 </body>
 </html>
-
 
 
