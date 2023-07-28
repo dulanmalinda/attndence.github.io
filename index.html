@@ -54,6 +54,11 @@
         @media (max-width: 768px) {
             .week {
                 flex-direction: column;
+                align-items: center; /* Center align the date boxes for small screens */
+            }
+            .date-box {
+                margin-bottom: 10px;
+                flex: none; /* Prevent date boxes from stretching in a column layout */
             }
         }
     </style>
