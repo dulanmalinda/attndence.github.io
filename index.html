@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Attendance and Tasks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         body {
             font-family: "Arial", sans-serif;
@@ -50,25 +51,49 @@
             padding: 10px;
         }
 
-        /* Responsive Styles */
-        @media (max-width: 768px) {
-            .week {
-                flex-direction: column;
-                align-items: center; /* Center align the date boxes for small screens */
+        /* Styling for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* New media query for smaller screens (e.g., mobile devices) */
+        @media only screen and (max-width: 500px) {
+            body {
+                font-size: 14px; /* Adjust font size for smaller screens */
+                padding: 10px; /* Reduce padding for smaller screens */
             }
+
+            .week {
+                display: flex; /* Display weeks as blocks on smaller screens */
+                flex-wrap: wrap; /* Allow the date-boxes to wrap to the next line if they don't fit horizontally */
+                justify-content: center; /* Center the date-boxes horizontally */
+            }
+
             .date-box {
-                margin-bottom: 10px;
-                flex: none; /* Prevent date boxes from stretching in a column layout */
+                width: calc(20% - 10px); /* Make date-boxes take 20% of the screen width minus some margin */
+                margin: 5px; /* Add some space between date-boxes */
+            }
+
+            /* Adjust the popup position on smaller screens */
+            .popup {
+                top: 40%; /* Adjust the vertical position of the popup */
+                left: 50%;
+                transform: translate(-50%, -40%);
+                width: 90%; /* Make the popup take 90% of the screen width */
             }
         }
     </style>
 </head>
 <body>
     <h1>Attendance and Tasks - Pubudu</h1>
-    
-    <div class="task-details" id="taskDetails">
-        <!-- JavaScript will update this section with task details -->
-    </div>
     <tr>
             <td colspan="4" align="center"><b><p style="color:blue">August</p></b></td><br>
         </tr>
@@ -77,11 +102,11 @@
         </tr>
     <div class="week">
         <!-- Replace "Week 1" with the appropriate week name -->
-        <div class="date-box " onclick="showTaskDetails('Aug 4')">4</div>
-        <div class="date-box " onclick="showTaskDetails('Aug 3')">3</div>
-        <div class="date-box " onclick="showTaskDetails('Aug 2')">2</div>
-        <div class="date-box " onclick="showTaskDetails('Aug 1')"></div>
-        <div class="date-box ">-</div>
+        <div class="date-box " onclick="showPopup('Aug 4')">4</div>
+        <div class="date-box " onclick="showPopup('Aug 3')">3</div>
+        <div class="date-box " onclick="showPopup('Aug 2')">2</div>
+        <div class="date-box "></div>
+        <div class="date-box "></div>
     </div>
      <tr>
             <td colspan="4" align="center"><b><p style="color:blue">July</p></b></td><br>
@@ -95,34 +120,40 @@
         <div class="date-box "></div>
         <div class="date-box "></div>
         <div class="date-box "></div>
-        <div class="date-box present" onclick="showTaskDetails('Jul 31')">31</div>
+        <div class="date-box present" onclick="showPopup('Jul 31')">31</div>
     </div>
     <tr>
             <td colspan="4"><b>Week 2</b></td>
         </tr>
     <div class="week">
         <!-- Replace "Week 1" with the appropriate week name -->
-        <div class="date-box present" onclick="showTaskDetails('Jul 28')">28</div>
-        <div class="date-box absent" onclick="showTaskDetails('Jul 27')">27</div>
-        <div class="date-box present" onclick="showTaskDetails('Jul 26')">26</div>
-        <div class="date-box present" onclick="showTaskDetails('Jul 25')">25</div>
-        <div class="date-box present" onclick="showTaskDetails('Jul 24')">24</div>
+        <div class="date-box present" onclick="showPopup('Jul 28')">28</div>
+        <div class="date-box absent" onclick="showPopup('Jul 27')">27</div>
+        <div class="date-box present" onclick="showPopup('Jul 26')">26</div>
+        <div class="date-box present" onclick="showPopup('Jul 25')">25</div>
+        <div class="date-box present" onclick="showPopup('Jul 24')">24</div>
     </div>
     <tr>
             <td colspan="4"><b>Week 1</b></td>
         </tr>
     <div class="week">
         <!-- Replace "Week 1" with the appropriate week name -->
-        <div class="date-box absent" onclick="showTaskDetails('Jul 21')">21</div>
-        <div class="date-box present" onclick="showTaskDetails('Jul 20')">20</div>
-        <div class="date-box present" onclick="showTaskDetails('Jul 19')">19</div>
-        <div class="date-box present" onclick="showTaskDetails('Jul 18')">18</div>
-        <div class="date-box present" onclick="showTaskDetails('Jul 17')">17</div>
+        <div class="date-box absent" onclick="showPopup('Jul 21')">21</div>
+        <div class="date-box present" onclick="showPopup('Jul 20')">20</div>
+        <div class="date-box present" onclick="showPopup('Jul 19')">19</div>
+        <div class="date-box present" onclick="showPopup('Jul 18')">18</div>
+        <div class="date-box present" onclick="showPopup('Jul 17')">17</div>
     </div>
- 
+
+    <!-- Popup content -->
+    <div id="popup" class="popup">
+        <h2 id="popupDate"></h2>
+        <div id="popupTasks"></div>
+        <center><button onclick="hidePopup()">Close</button></center>
+    </div>
+
     <script>
-        function showTaskDetails(date) {
-            // Define your data here or retrieve from a data source
+        // Define your data here or retrieve from a data source
             const taskData = {
                 "Jul 31": [
                     ""
@@ -154,11 +185,13 @@
                     "Reaserch about packet capturing in two interfaces using a switch (Packet Mirroring)."
                     
                 ],
-                
-            };
+        };
 
-            // Get the task details container element
-            const taskDetailsContainer = document.getElementById("taskDetails");
+        // Function to show the popup
+        function showPopup(date) {
+            var popup = document.getElementById('popup');
+            var popupDate = document.getElementById('popupDate');
+            var popupTasks = document.getElementById('popupTasks');
 
             // Get the tasks for the selected date from the taskData object
             const tasks = taskData[date];
@@ -174,38 +207,32 @@
                     taskList.appendChild(listItem);
                 });
 
-                // Update the task details container with the new list
-                taskDetailsContainer.innerHTML = `
-                    <h2>Task Details for ${date}</h2>
-                    <p></p>
-                `;
-                taskDetailsContainer.appendChild(taskList);
+                // Update the popup with the date and tasks
+                popupDate.textContent = "Task Details for " + date;
+                popupTasks.innerHTML = "";
+                popupTasks.appendChild(taskList);
+
+                // Display the popup
+                popup.style.display = 'block';
             } else {
                 // If no tasks are available, display a message
-                taskDetailsContainer.innerHTML = `<p>No tasks recorded for ${date}.</p>`;
-            }
-        }
-        function showLatestTaskDetails() {
-            // Get the current date in the format "MMM DD" (e.g., "Jul 27")
-            const currentDate = new Date().toLocaleDateString("en-US", {
-                month: "short",
-                day: "numeric"
-            });
+                popupDate.textContent = "Task Details for " + date;
+                popupTasks.innerHTML = "<p>No tasks recorded for " + date + ".</p>";
 
-            // If the current date exists in the taskData, show its task details
-            if (taskData[currentDate]) {
-                showTaskDetails(currentDate);
-            } else {
-                // If no tasks are available for the current date, display a message
-                const taskDetailsContainer = document.getElementById("taskDetails");
-                taskDetailsContainer.innerHTML = `<p>No tasks recorded for ${currentDate}.</p>`;
+                // Display the popup
+                popup.style.display = 'block';
             }
         }
 
-        // Automatically show the latest data when the page is loaded
-        window.onload = showLatestTaskDetails;
+        // Function to hide the popup
+        function hidePopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
     </script>
 </body>
 </html>
+
+
 
 
