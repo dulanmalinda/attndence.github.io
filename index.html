@@ -1,240 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Attendance and Tasks</title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Names</title>
     <style>
         body {
-            font-family: "Arial", sans-serif;
-            padding: 20px;
-            background-color: #f9f9f9;
-            color: #333;
-        }
-
-        h1 {
-            background-color: #007BFF;
-            color: #fff;
-            padding: 10px;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .week {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .date-box {
-            flex: 1;
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-            cursor: pointer;
-        }
-
-        .date-box:hover {
-            background-color: #e0e0e0;
-        }
-
-        .date-box.present {
-            background-color: #b6e6b6; /* Green for Present */
-        }
-
-        .date-box.absent {
-            background-color: #f5bcbc; /* Red for Absent */
-        }
-
-        .task-details {
-            margin-top: 20px;
-            border: 1px solid #ddd;
-            padding: 10px;
-        }
-
-        /* Styling for the popup */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 300px;
-            padding: 20px;
-            background-color: #f0f0f0;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-        }
         
-        /* New media query for smaller screens (e.g., mobile devices) */
-        @media only screen and (max-width: 500px) {
-            body {
-                font-size: 14px; /* Adjust font size for smaller screens */
-                padding: 10px; /* Reduce padding for smaller screens */
-            }
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('back.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            backdrop-filter: blur(8px);
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
 
-            .week {
-                display: flex; /* Display weeks as blocks on smaller screens */
-                flex-wrap: wrap; /* Allow the date-boxes to wrap to the next line if they don't fit horizontally */
-                justify-content: center; /* Center the date-boxes horizontally */
-            }
+        .header {
+            color: #fff;
+            font-size: 32px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            animation: fadeInOut 3s ease-in-out infinite;
+        }
 
-            .date-box {
-                width: calc(20% - 10px); /* Make date-boxes take 20% of the screen width minus some margin */
-                margin: 5px; /* Add some space between date-boxes */
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
             }
+            50% {
+                opacity: 1;
+            }
+        }
 
-            /* Adjust the popup position on smaller screens */
-            .popup {
-                top: 40%; /* Adjust the vertical position of the popup */
-                left: 50%;
-                transform: translate(-50%, -40%);
-                width: 90%; /* Make the popup take 90% of the screen width */
-            }
+        .datetime {
+            font-size: 24px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            width: 400px;
+        }
+
+        .box {
+            width: 150px;
+            height: 150px;
+            background-color: #3498db;
+            color: #fff;
+            font-size: 24px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 10px;
+            border-radius: 10px;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        .box:hover {
+            transform: scale(1.1);
+            box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
         }
     </style>
 </head>
 <body>
-    <h1>Attendance and Tasks - Pubudu</h1>
-    <tr>
-            <td colspan="4" align="center"><b><p style="color:blue">August</p></b></td><br>
-        </tr>
-    <tr>
-            <td colspan="4"><b>Week 1</b></td>
-        </tr>
-    <div class="week">
-        <!-- Replace "Week 1" with the appropriate week name -->
-        <div class="date-box " onclick="showPopup('Aug 4')">4</div>
-        <div class="date-box present" onclick="showPopup('Aug 3')">3</div>
-        <div class="date-box present" onclick="showPopup('Aug 2')">2</div>
-        <div class="date-box "></div>
-        <div class="date-box "></div>
+    <div class="header">Attendance</div>
+    <div class="datetime" id="datetime"></div>
+    <div class="container"><br>
+        <a href="pubudu.html" style="text-decoration:none"><div class="box">Pubudu</div></a>
+        <a href="Lithira.html" style="text-decoration:none"><div class="box">Lithira</div></a>
+        <a href="Dulan.html" style="text-decoration:none"><div class="box">Dulan</div></a>
+        <a href="Buddika.html" style="text-decoration:none"><div class="box">Buddika</div></a>
     </div>
-     <tr>
-            <td colspan="4" align="center"><b><p style="color:blue">July</p></b></td><br>
-        </tr>
-    <tr>
-            <td colspan="4"><b>Week 3</b></td>
-        </tr>
-    <div class="week">
-        <!-- Replace "Week 1" with the appropriate week name -->
-        <div class="date-box "></div>
-        <div class="date-box "></div>
-        <div class="date-box "></div>
-        <div class="date-box "></div>
-        <div class="date-box present" onclick="showPopup('Jul 31')">31</div>
-    </div>
-    <tr>
-            <td colspan="4"><b>Week 2</b></td>
-        </tr>
-    <div class="week">
-        <!-- Replace "Week 1" with the appropriate week name -->
-        <div class="date-box present" onclick="showPopup('Jul 28')">28</div>
-        <div class="date-box absent" onclick="showPopup('Jul 27')">27</div>
-        <div class="date-box present" onclick="showPopup('Jul 26')">26</div>
-        <div class="date-box present" onclick="showPopup('Jul 25')">25</div>
-        <div class="date-box present" onclick="showPopup('Jul 24')">24</div>
-    </div>
-    <tr>
-            <td colspan="4"><b>Week 1</b></td>
-        </tr>
-    <div class="week">
-        <!-- Replace "Week 1" with the appropriate week name -->
-        <div class="date-box absent" onclick="showPopup('Jul 21')">21</div>
-        <div class="date-box present" onclick="showPopup('Jul 20')">20</div>
-        <div class="date-box present" onclick="showPopup('Jul 19')">19</div>
-        <div class="date-box present" onclick="showPopup('Jul 18')">18</div>
-        <div class="date-box present" onclick="showPopup('Jul 17')">17</div>
-    </div>
-
-    <!-- Popup content -->
-    <div id="popup" class="popup">
-        <h2 id="popupDate"></h2>
-        <div id="popupTasks"></div>
-        <center><button onclick="hidePopup()">Close</button></center>
-    </div>
-
     <script>
-        // Define your data here or retrieve from a data source
-            const taskData = {
-                "Aug 3": [
-                    "Implemented a GUI using python to display retrieved data from MongoDB"
-                ],
-                "Aug 2": [
-                    "Implemented a web server using python to display filtered packet based on time and host ip"
-                ],
-                "Jul 31": [
-                    "Implemented a web server in C using microhttpd.h."
-                ],
-                "Jul 17": [
-                    "Configure dual boot Windows and Kali Linux."
-                ],
-                "Jul 18": [
-                    "Research about Wireshark.",
-                ],
-                "Jul 19": [
-                    "Read the source code (Wireshark)."
-                ],
-                "Jul 20": [
-                    "Research about NoSQL and performance of data store and retrieve and research about MongoDB"
-                ],
-                "Jul 24": [
-                    "Implement MongoDB and store the locally captured packet data to the database.",
-                    "Created a presentation about Comparison of Data Packages"
-                ],
-                "Jul 25": [
-                    "Implement an interface using C GTK library to retrieve the data from MongoDB"
-                ],
-                "Jul 26": [
-                    "Research about native packet capturing (packet lookup)."
-                ],
-                "Jul 28": [
-                    "Implemented a interface to capture TCP packet sequence.",
-                    "Reaserch about packet capturing in two interfaces using a switch (Packet Mirroring)."
-                    
-                ],
-        };
-
-        // Function to show the popup
-        function showPopup(date) {
-            var popup = document.getElementById('popup');
-            var popupDate = document.getElementById('popupDate');
-            var popupTasks = document.getElementById('popupTasks');
-
-            // Get the tasks for the selected date from the taskData object
-            const tasks = taskData[date];
-
-            if (tasks) {
-                // Create a list to display the tasks
-                const taskList = document.createElement("ul");
-
-                // Add each task as a list item to the list
-                tasks.forEach(task => {
-                    const listItem = document.createElement("li");
-                    listItem.textContent = task;
-                    taskList.appendChild(listItem);
-                });
-
-                // Update the popup with the date and tasks
-                popupDate.textContent = "Task Details for " + date;
-                popupTasks.innerHTML = "";
-                popupTasks.appendChild(taskList);
-
-                // Display the popup
-                popup.style.display = 'block';
-            } else {
-                // If no tasks are available, display a message
-                popupDate.textContent = "Task Details for " + date;
-                popupTasks.innerHTML = "<p>No tasks recorded for " + date + ".</p>";
-
-                // Display the popup
-                popup.style.display = 'block';
-            }
+        function updateDateTime() {
+            const datetimeElement = document.getElementById('datetime');
+            const today = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            const dateTimeString = today.toLocaleString('en-US', options);
+            datetimeElement.textContent = dateTimeString;
         }
 
-        // Function to hide the popup
-        function hidePopup() {
-            var popup = document.getElementById('popup');
-            popup.style.display = 'none';
-        }
+        updateDateTime();
+        setInterval(updateDateTime, 1000); // Update every second to show live time.
     </script>
 </body>
 </html>
