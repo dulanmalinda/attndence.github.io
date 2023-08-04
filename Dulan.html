@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Attendance and Tasks</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+
+        h1 {
+            background-color: #007BFF;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .week {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .date-box {
+            flex: 1;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .date-box:hover {
+            background-color: #e0e0e0;
+        }
+
+        .date-box.present {
+            background-color: #b6e6b6; /* Green for Present */
+        }
+
+        .date-box.absent {
+            background-color: #f5bcbc; /* Red for Absent */
+        }
+
+        .task-details {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        /* Styling for the popup */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            padding: 20px;
+            background-color: #f0f0f0;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* New media query for smaller screens (e.g., mobile devices) */
+        @media only screen and (max-width: 500px) {
+            body {
+                font-size: 14px; /* Adjust font size for smaller screens */
+                padding: 10px; /* Reduce padding for smaller screens */
+            }
+
+            .week {
+                display: flex; /* Display weeks as blocks on smaller screens */
+                flex-wrap: wrap; /* Allow the date-boxes to wrap to the next line if they don't fit horizontally */
+                justify-content: center; /* Center the date-boxes horizontally */
+            }
+
+            .date-box {
+                width: calc(20% - 10px); /* Make date-boxes take 20% of the screen width minus some margin */
+                margin: 5px; /* Add some space between date-boxes */
+            }
+
+            /* Adjust the popup position on smaller screens */
+            .popup {
+                top: 40%; /* Adjust the vertical position of the popup */
+                left: 50%;
+                transform: translate(-50%, -40%);
+                width: 90%; /* Make the popup take 90% of the screen width */
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Attendance and Tasks - Dulan</h1>
+    <tr>
+            <td colspan="4" align="center"><b><p style="color:blue">August</p></b></td><br>
+        </tr>
+    <tr>
+            <td colspan="4"><b>Week 1</b></td>
+        </tr>
+    <div class="week">
+        <!-- Replace "Week 1" with the appropriate week name -->
+        <div class="date-box present" onclick="showPopup('Aug 4')">4</div>
+        <div class="date-box present" onclick="showPopup('Aug 3')">3</div>
+        <div class="date-box present" onclick="showPopup('Aug 2')">2</div>
+        <div class="date-box "></div>
+        <div class="date-box "></div>
+    </div>
+    
+
+    <!-- Popup content -->
+    <div id="popup" class="popup">
+        <h2 id="popupDate"></h2>
+        <div id="popupTasks"></div>
+        <center><button onclick="hidePopup()">Close</button></center>
+    </div>
+
+    <script>
+        // Define your data here or retrieve from a data source
+            const taskData = {
+                "Aug 3": [
+                    
+                ],
+                              
+        };
+
+        // Function to show the popup
+        function showPopup(date) {
+            var popup = document.getElementById('popup');
+            var popupDate = document.getElementById('popupDate');
+            var popupTasks = document.getElementById('popupTasks');
+
+            // Get the tasks for the selected date from the taskData object
+            const tasks = taskData[date];
+
+            if (tasks) {
+                // Create a list to display the tasks
+                const taskList = document.createElement("ul");
+
+                // Add each task as a list item to the list
+                tasks.forEach(task => {
+                    const listItem = document.createElement("li");
+                    listItem.textContent = task;
+                    taskList.appendChild(listItem);
+                });
+
+                // Update the popup with the date and tasks
+                popupDate.textContent = "Task Details for " + date;
+                popupTasks.innerHTML = "";
+                popupTasks.appendChild(taskList);
+
+                // Display the popup
+                popup.style.display = 'block';
+            } else {
+                // If no tasks are available, display a message
+                popupDate.textContent = "Task Details for " + date;
+                popupTasks.innerHTML = "<p>No tasks recorded for " + date + ".</p>";
+
+                // Display the popup
+                popup.style.display = 'block';
+            }
+        }
+
+        // Function to hide the popup
+        function hidePopup() {
+            var popup = document.getElementById('popup');
+            popup.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
