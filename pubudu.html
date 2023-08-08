@@ -97,11 +97,22 @@
     <tr>
             <td colspan="4" align="center"><b><p style="color:blue">August</p></b></td><br>
         </tr>
+    
+    <tr>
+            <td colspan="4"><b>Week 2</b></td>
+        </tr>
+    <div class="week">
+        <div class="date-box present" onclick="showPopup('Aug 11')">11</div>
+        <div class="date-box present" onclick="showPopup('Aug 10')">10</div>
+        <div class="date-box present" onclick="showPopup('Aug 9')">9</div>
+        <div class="date-box present" onclick="showPopup('Aug 8')">8</div>
+        <div class="date-box absent" onclick="showPopup('Aug 7')">7</div>
+    </div>
+    
     <tr>
             <td colspan="4"><b>Week 1</b></td>
         </tr>
     <div class="week">
-        <!-- Replace "Week 1" with the appropriate week name -->
         <div class="date-box present" onclick="showPopup('Aug 4')">4</div>
         <div class="date-box present" onclick="showPopup('Aug 3')">3</div>
         <div class="date-box present" onclick="showPopup('Aug 2')">2</div>
@@ -115,7 +126,6 @@
             <td colspan="4"><b>Week 3</b></td>
         </tr>
     <div class="week">
-        <!-- Replace "Week 1" with the appropriate week name -->
         <div class="date-box "></div>
         <div class="date-box "></div>
         <div class="date-box "></div>
@@ -126,7 +136,6 @@
             <td colspan="4"><b>Week 2</b></td>
         </tr>
     <div class="week">
-        <!-- Replace "Week 1" with the appropriate week name -->
         <div class="date-box present" onclick="showPopup('Jul 28')">28</div>
         <div class="date-box absent" onclick="showPopup('Jul 27')">27</div>
         <div class="date-box present" onclick="showPopup('Jul 26')">26</div>
@@ -137,7 +146,6 @@
             <td colspan="4"><b>Week 1</b></td>
         </tr>
     <div class="week">
-        <!-- Replace "Week 1" with the appropriate week name -->
         <div class="date-box absent" onclick="showPopup('Jul 21')">21</div>
         <div class="date-box present" onclick="showPopup('Jul 20')">20</div>
         <div class="date-box present" onclick="showPopup('Jul 19')">19</div>
@@ -153,8 +161,10 @@
     </div>
 
     <script>
-        // Define your data here or retrieve from a data source
             const taskData = {
+                "Aug 8": [
+                    ""
+                ],
                 "Aug 4": [
                     "Implemented a c code that can be configured using a config file"
                 ],
